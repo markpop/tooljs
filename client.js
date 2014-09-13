@@ -1,6 +1,6 @@
 // 客户端检测
-var Client = (function (w, nav) {
-  var Client = function () {
+var _Client = (function (w, nav) {
+  var _Client = function () {
     // 呈现引擎
     this.engine = {};
     // 浏览器
@@ -10,7 +10,7 @@ var Client = (function (w, nav) {
     // 初始化
     this.init();
   };
-  Client.prototype.init = function () {
+  _Client.prototype.init = function () {
     var ua = nav.userAgent,
         p = nav.platform;
     // 检测呈现引擎和浏览器
@@ -162,10 +162,10 @@ var Client = (function (w, nav) {
       this.system.ver = null;
     }
   };
-  Client.prototype.isHostMethod = function (object, property) {
+  _Client.prototype.isHostMethod = function (object, property) {
     // author: Peter Michaux
     var t = typeof object[property];
     return t == 'function' || (!!(t == 'object' && object[property])) || t == 'unknown';
   };
-  return Client;
+  return _Client;
 })(window, navigator);
