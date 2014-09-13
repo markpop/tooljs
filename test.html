@@ -5,11 +5,18 @@
   <title>Test</title>
 </head>
 <body>
+  <button id="btn">test</button>
   <script src="client.js"></script>
+  <script src="event.js"></script>
   <script>
-    var client = new _Client();
-    console.log(client);
-    console.log(client.isHostMethod(window, 'alert'));
+    var _client = new _Client(),
+        _event = new _Event();
+    console.log(_client);
+    console.log(_client.isHostMethod(window, 'alert'));
+    var btn = document.getElementById('btn');
+    _event.addHandler(btn, 'click', function () {
+      console.log('ok');
+    });
   </script>
 </body>
 </html>

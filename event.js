@@ -14,7 +14,7 @@ var _Event = (function (w) {
   _Event.prototype.removeHandler = function (element, type, handler) {
     if (element.removeEventListener) {
       element.removeEventListener(type, handler, false);
-    } else if () {
+    } else if (element.detachEvent) {
       element.detachEvent('on' + type, handler);
     } else {
       element['on' + type] = null;
@@ -44,4 +44,5 @@ var _Event = (function (w) {
       event.cancelBubble = true;
     }
   };
+  return _Event;
 })(window);
