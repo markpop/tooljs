@@ -1,3 +1,4 @@
+// 事件处理
 var _Event = (function (w) {
   var _Event = function () {};
   // 添加事件处理
@@ -27,6 +28,18 @@ var _Event = (function (w) {
   // 获取目标对象
   _Event.prototype.getTarget = function (event) {
     return event.target || event.srcElement; 
+  };
+  // 获取相关目标对象
+  _Event.prototype.getRelatedTarget = function (event) {
+    if (event.relatedTarget) {
+      return event.relatedTarget;
+    } else if (event.toElement) {
+      return event.toElement;
+    } else if (event.fromElement) {
+      return fromElement;
+    } else {
+      return null;
+    }
   };
   // 阻止默认事件
   _Event.prototype.preventDefault = function (event) {
