@@ -162,10 +162,16 @@ var _Client = (function (w, nav) {
       this.system.ver = null;
     }
   };
+  // 对象是否包含此方法
   _Client.prototype.isHostMethod = function (object, property) {
     // author: Peter Michaux
     var t = typeof object[property];
     return t == 'function' || (!!(t == 'object' && object[property])) || t == 'unknown';
+  };
+  // 是否是移动设备
+  _Client.prototype.isMobile = function () {
+    var t = typeof this.system.mobile;
+    return t != 'undefined';
   };
   return _Client;
 })(window, navigator);
