@@ -5,12 +5,18 @@
   <title>Test</title>
 </head>
 <body>
+  <div class="a b"></div>
+  <div class="a b c"></div>
+  <span class="a b c"></span>
+  <div class="ab"></div>
   <button id="btn">test</button>
   <script src="client.js"></script>
   <script src="event.js"></script>
+  <script src="dom.js"></script>
   <script>
     var _client = new _Client(),
-        _event = new _Event();
+        _event = new _Event(),
+        _dom = new _Dom();
     console.log(_client);
     console.log(_client.isHostMethod(window, 'alert'));
     console.log(_client.isMobile());
@@ -18,6 +24,8 @@
     _event.addHandler(btn, 'click', function () {
       console.log('ok');
     });
+    var divs = _dom.getElementsByClass('a');
+    console.log(divs);
   </script>
 </body>
 </html>
