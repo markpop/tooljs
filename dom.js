@@ -52,5 +52,19 @@ var _Dom = (function (d) {
       return result;
     }
   };
+  _Dom.prototype.addClass = function (element, className) {
+    // 将-加上\，避免匹配出错
+    className = className.replace(/\-/, '\\-');
+    // 将className转化成数组
+    var classes = className.split(' '),
+        flag = false;
+    for (var i = classes.length - 1; i >= 0; i--) {
+      // 遍历classes数组，判断是否跟元素的class重复
+      flag = (new RegExp('\\b'+classes[i]+'\\b')).test(element.className);
+      if (!flag) {
+        element.className += ' ' + classes[i];
+      }
+    };
+  };
   return _Dom;
 })(document);

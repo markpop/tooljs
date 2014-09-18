@@ -7,7 +7,7 @@
 <body>
   <div class="a b"></div>
   <div class="a b c"></div>
-  <span class="a b c"></span>
+  <span class="ab b c"></span>
   <div class="ab"></div>
   <button id="btn">test</button>
   <script src="client.js"></script>
@@ -24,8 +24,9 @@
     _event.addHandler(btn, 'click', function () {
       console.log('ok');
     });
-    var divs = _dom.getElementsByClass('a');
+    var divs = _dom.getElementsByClass('ab');
     console.log(divs);
+    _dom.addClass(divs[0], 'a b d e');
   </script>
 </body>
 </html>
