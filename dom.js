@@ -6,17 +6,18 @@ var _Dom = (function (d) {
     if (d.getElementsByClassName) {
       var elements = (parent || d).getElementsByClassName(className),
           item = null;
-      for (var i = elements.length - 1; i >= 0; i--) {
-        item = elements[i];
-        // 判断tag是否存在
-        if (tag) {
+      // 判断tag是否存在
+      if (tag) {
+        for (var i = elements.length - 1; i >= 0; i--) {
+          item = elements[i];
           if (item.tagName === tag.toUpperCase()) {
             result.push(item);
           }
-        } else {
-          result.push(item);
-        }
-      };
+        };
+      } else {
+        // 将NodeList转化为数组
+        result = Array.prototype.slice.call(elements);
+      }
       return result;
     } else {
       parent = parent || d;
@@ -53,8 +54,6 @@ var _Dom = (function (d) {
     }
   };
   _Dom.prototype.addClass = function (element, className) {
-    // 将-加上\，避免匹配出错
-    className = className.replace(/\-/, '\\-');
     // 将className转化成数组
     var classes = className.split(' '),
         flag = false;
