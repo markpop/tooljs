@@ -55,14 +55,28 @@ var _Dom = (function (d) {
   _Dom.prototype.addClass = function (element, className) {
     // 将className转化成数组
     var classes = className.split(' '),
-        flag = false;
+        flag = false,
+        elementClass = element.className;
     for (var i = classes.length - 1; i >= 0; i--) {
       // 遍历classes数组，判断是否跟元素的class重复
-      flag = (new RegExp('\\b'+classes[i]+'\\b')).test(element.className);
+      flag = (new RegExp('\\b'+classes[i]+'\\b')).test(elementClass);
       if (!flag) {
-        element.className += ' ' + classes[i];
+        elementClass += ' ' + classes[i];
       }
     };
+    element.className = elementClass;
+  };
+  _Dom.prototype.removeClass = function (element, className) {
+    // 将className转化成数组
+    var classes = className.split(' '),
+        flag = false,
+        elementClass = element.className,
+        item = '';
+    for (var i = classes.length - 1; i >= 0; i--) {
+      item = classes[i];
+      elementClass  = elementClass.replace(new RegExp(item+'\\s*|\\s*'+item+'|'+item), '');
+    };
+    element.className = elementClass;
   };
   return _Dom;
 })(document);

@@ -7,7 +7,7 @@
 <body>
   <div class="a b"></div>
   <div class="a b c"></div>
-  <span class="ab b c c-a a-b"></span>
+  <span class="c cb c-b"></span>
   <div class="ab"></div>
   <button id="btn">test</button>
   <script src="client.js"></script>
@@ -24,9 +24,9 @@
     _event.addHandler(btn, 'click', function () {
       console.log('ok');
     });
-    var divs = _dom.getElementsByClass('c-a', document);
+    var divs = _dom.getElementsByClass('c-b', document);
     console.log(divs);
-    _dom.addClass(divs[0], 'a-b b d e');
+    _dom.removeClass(divs[0], 'c');
   </script>
 </body>
 </html>
