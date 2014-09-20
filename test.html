@@ -7,7 +7,7 @@
 <body>
   <div class="a b"></div>
   <div class="a b c"></div>
-  <span class="c cb c-b"></span>
+  <span class="cb e c-b"></span>
   <div class="ab"></div>
   <button id="btn">test</button>
   <script src="client.js"></script>
@@ -26,7 +26,8 @@
     });
     var divs = _dom.getElementsByClass('c-b', document);
     console.log(divs);
-    _dom.removeClass(divs[0], 'c');
+    _dom.removeClass(divs[0], 'cb e c-b');
+    console.log(_dom.hasClass(divs[0], 'a'));
   </script>
 </body>
 </html>

@@ -55,28 +55,33 @@ var _Dom = (function (d) {
   _Dom.prototype.addClass = function (element, className) {
     // 将className转化成数组
     var classes = className.split(' '),
-        flag = false,
         elementClass = element.className;
     for (var i = classes.length - 1; i >= 0; i--) {
       // 遍历classes数组，判断是否跟元素的class重复
-      flag = (new RegExp('\\b'+classes[i]+'\\b')).test(elementClass);
-      if (!flag) {
+      if (!this.hasClass(element, classes[i])) {
         elementClass += ' ' + classes[i];
       }
     };
+    // 将元素className替换成处理过的className
     element.className = elementClass;
   };
   _Dom.prototype.removeClass = function (element, className) {
-    // 将className转化成数组
+    // 将要查找的className和元素的className转化为数组
     var classes = className.split(' '),
-        flag = false,
-        elementClass = element.className,
-        item = '';
+        elementClasses = element.className.split(' ');
     for (var i = classes.length - 1; i >= 0; i--) {
-      item = classes[i];
-      elementClass  = elementClass.replace(new RegExp(item+'\\s*|\\s*'+item+'|'+item), '');
+      for (var j = elementClasses.length - 1; j >= 0; j--) {
+        // 如果出现重复就删除
+        if (classes[i] === elementClasses[j]) {
+          elementClasses.splice(j, 1);
+        }
+      };
     };
-    element.className = elementClass;
+    // 将元素className替换成处理过的className
+    element.className = elementClasses.join(' ');
+  };
+  _Dom.prototype.hasClass = function (element, className) {
+    return (new RegExp('(^|\\s)'+className+'(\\s|$)')).test(element.className);
   };
   return _Dom;
 })(document);
