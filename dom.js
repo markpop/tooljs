@@ -6,18 +6,17 @@ var _Dom = (function (d) {
     if (d.getElementsByClassName) {
       var elements = (parent || d).getElementsByClassName(className),
           item = null;
-      // 判断tag是否存在
-      if (tag) {
-        for (var i = elements.length - 1; i >= 0; i--) {
-          item = elements[i];
+      for (var i = elements.length - 1; i >= 0; i--) {
+        item = elements[i];
+        // 判断tag是否存在
+        if (tag) {
           if (item.tagName === tag.toUpperCase()) {
             result.push(item);
           }
-        };
-      } else {
-        // 将NodeList转化为数组
-        result = Array.prototype.slice.call(elements);
-      }
+        } else {
+          result.push(item);
+        }
+      };
       return result;
     } else {
       parent = parent || d;
