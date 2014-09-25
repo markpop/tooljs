@@ -22,7 +22,7 @@
     console.log(_client.isMobile());
     var btn = document.getElementById('btn');
     _event.addHandler(btn, 'click', function () {
-      console.log('ok');
+      _dom.toggleClass(btn, 'hello');
     });
     var divs = _dom.getElementsByClass('c-b', document);
     console.log(divs);

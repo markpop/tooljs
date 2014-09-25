@@ -59,7 +59,11 @@ var _Dom = (function (d) {
     for (var i = classes.length - 1; i >= 0; i--) {
       // 遍历classes数组，判断是否跟元素的class重复
       if (!this.hasClass(element, classes[i])) {
-        elementClass += ' ' + classes[i];
+        if (elementClass) {
+          elementClass += ' ' + classes[i];
+        } else {
+          elementClass += classes[i];
+        }
       }
     };
     // 将元素className替换成处理过的className
@@ -79,6 +83,23 @@ var _Dom = (function (d) {
     };
     // 将元素className替换成处理过的className
     element.className = elementClasses.join(' ');
+  };
+  _Dom.prototype.toggleClass = function (element, className) {
+    if (this.hasClass(element, className)) {
+      var elementClasses = element.className.split(' ');
+      for (var i = elementClasses.length - 1; i >= 0; i--) {
+        if (elementClasses[i] === className) {
+          elementClasses.splice(i, 1);
+        }
+      };
+      element.className = elementClasses.join();
+    } else {
+      if (element.className) {
+        element.className += ' ' + className;
+      } else {
+        element.className += className;
+      }
+    }
   };
   _Dom.prototype.hasClass = function (element, className) {
     return (new RegExp('(^|\\s)'+className+'(\\s|$)')).test(element.className);
