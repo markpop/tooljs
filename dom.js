@@ -59,6 +59,7 @@ var _Dom = (function (d) {
     for (var i = classes.length - 1; i >= 0; i--) {
       // 遍历classes数组，判断是否跟元素的class重复
       if (!this.hasClass(element, classes[i])) {
+        // 判断元素的class是否为空
         if (elementClass) {
           elementClass += ' ' + classes[i];
         } else {
@@ -85,6 +86,7 @@ var _Dom = (function (d) {
     element.className = elementClasses.join(' ');
   };
   _Dom.prototype.toggleClass = function (element, className) {
+    // 判断元素是否有这个class
     if (this.hasClass(element, className)) {
       var elementClasses = element.className.split(' ');
       for (var i = elementClasses.length - 1; i >= 0; i--) {
@@ -94,6 +96,7 @@ var _Dom = (function (d) {
       };
       element.className = elementClasses.join();
     } else {
+      // 判断元素的class是否为空
       if (element.className) {
         element.className += ' ' + className;
       } else {
