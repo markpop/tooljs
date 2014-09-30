@@ -107,5 +107,31 @@ var _Dom = (function (d) {
   _Dom.prototype.hasClass = function (element, className) {
     return (new RegExp('(^|\\s)'+className+'(\\s|$)')).test(element.className);
   };
+  _Dom.prototype.tmpl = function (tpl, data) {
+    var regVar = /<%([^%>]+)?%>/g,
+        regCon = /(^( )?(if|for|else|switch|case|break|{|}))(.*)?/g;
+        code = 'var r = [];\n';
+        match = null,
+        cursor = 0,
+        add = function(line, js) {
+          if (js) {
+            if (line.match(regCon)) {
+              code += line+'\n';
+            } else {
+              code += 'r.push(this.'+line+');\n';
+            }
+          } else {
+            code += 'r.push("'+line.replace(/"/g, '\\"')+'");\n';
+          }
+        };
+    while(match = regVar.exec(tpl)) {
+      add(tpl.slice(cursor, match.index));
+      add(match[1], true);
+      cursor = match.index + match[0].length;
+    }
+    add(tpl.slice(cursor, tpl.length));
+    code += 'return r.join("")';
+    return new Function(code.replace(/[\r\t\n]/g, '')).apply(data);
+  };
   return _Dom;
 })(document);
