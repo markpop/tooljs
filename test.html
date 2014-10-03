@@ -13,21 +13,29 @@
   <script src="client.js"></script>
   <script src="event.js"></script>
   <script src="dom.js"></script>
+  <script src="base.js"></script>
   <script>
-    var _client = new _Client(),
-        _event = new _Event(),
-        _dom = new _Dom();
-    console.log(_client);
-    console.log(_client.isHostMethod(window, 'alert'));
-    console.log(_client.isMobile());
-    var btn = document.getElementById('btn');
-    _event.addHandler(btn, 'click', function () {
-      _dom.toggleClass(btn, 'hello');
+    // var _client = new _Client(),
+    //     _event = new _Event(),
+    //     _dom = new _Dom();
+    // console.log(_client);
+    // console.log(_client.isHostMethod(window, 'alert'));
+    // console.log(_client.isMobile());
+    // var btn = document.getElementById('btn');
+    // _event.addHandler(btn, 'click', function () {
+    //   _dom.toggleClass(btn, 'hello');
+    // });
+    // var divs = _dom.getElementsByClass('c-b', document);
+    // console.log(divs);
+    // _dom.removeClass(divs[0], 'cb e c-b');
+    // console.log(_dom.hasClass(divs[0], 'a'));
+    var _base = new _Base();
+    var arr = ['q', 'w', 'e', 'r'];
+    var o = {hello: 1, fuxk: 2, 0: 'sad'};
+    var result = _base.map(o, function (i, a, w) {
+      return i;
     });
-    var divs = _dom.getElementsByClass('c-b', document);
-    console.log(divs);
-    _dom.removeClass(divs[0], 'cb e c-b');
-    console.log(_dom.hasClass(divs[0], 'a'));
+    console.log(result);
   </script>
 </body>
 </html>
